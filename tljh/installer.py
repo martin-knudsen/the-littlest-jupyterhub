@@ -261,10 +261,12 @@ def ensure_user_environment(user_requirements_txt_file):
         )
 
     cf_pkgs_to_upgrade = list(set(to_upgrade) & {"conda", "mamba"})
+    cf_pkgs_to_upgrade.append("python=3.10")
     if cf_pkgs_to_upgrade:
+        
         conda.ensure_conda_packages(
             USER_ENV_PREFIX,
-            # we _could_ explicitly pin Python here,
+            #python=3.10,
             # but conda already does this by default
             cf_pkgs_to_upgrade,
         )
